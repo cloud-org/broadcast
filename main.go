@@ -25,14 +25,15 @@
 package main
 
 import (
-	"broadcast/core"
-	"broadcast/svc"
 	"context"
 	"log"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"broadcast/core"
+	"broadcast/svc"
 )
 
 var regionBroad *svc.RegionBroad
