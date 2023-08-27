@@ -75,7 +75,7 @@ func (e *EtcdMgr) Close() {
 	_ = e.watcher.Close()
 }
 
-//CreateWatchChan 创建 watch 通道
+// CreateWatchChan 创建 watch 通道
 func (e *EtcdMgr) CreateWatchChan(ctx context.Context, key string) (clientv3.WatchChan, error) {
 	// constant.ChannelConfigDir
 	getResp, err := e.kv.Get(ctx, key, clientv3.WithPrefix())

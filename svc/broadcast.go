@@ -60,7 +60,7 @@ type RegionBroad struct {
 	stopC        chan struct{}
 }
 
-//trimPrefix 过滤出对应变动的 regionId
+// trimPrefix 过滤出对应变动的 regionId
 func (r *RegionBroad) trimPrefix(key string) RegionId {
 	return RegionId(strings.TrimPrefix(key, r.prefix))
 }
