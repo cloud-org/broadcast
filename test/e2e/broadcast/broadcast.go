@@ -46,8 +46,8 @@ var _ = ginkgo.Describe("CLI", func() {
 			gomega.Expect(err).Should(gomega.BeNil())
 			pid := cmd.Process.Pid
 			gomega.Expect(pid).Should(gomega.BeNumerically(">", 0))
-			go func() {
-				time.Sleep(3 * time.Second)
+			defer func() {
+				var err error
 				err = cmd.Process.Signal(syscall.SIGINT)
 				gomega.Expect(err).Should(gomega.BeNil())
 				err = cmd.Wait()
@@ -61,7 +61,7 @@ var _ = ginkgo.Describe("CLI", func() {
 			err = notifyCmd.Run()
 			gomega.Expect(err).Should(gomega.BeNil())
 			// check log
-			time.Sleep(5 * time.Second)
+			time.Sleep(2 * time.Second)
 			gomega.Expect(out.String()).Should(gomega.ContainSubstring("add agent agent_1 region_123456"))
 			gomega.Expect(out.String()).Should(gomega.ContainSubstring("add agent agent_2 region_123456"))
 			gomega.Expect(out.String()).Should(gomega.ContainSubstring("key: /config/region_123456 value: value change"))
